@@ -4,7 +4,7 @@ import ActiveLink from '../../../ActiveLink/ActiveLink';
 import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
-  const { user,logOut } = useAuth();
+  const { user, logOut } = useAuth();
 
   const handleSignOut = () => {
     logOut()
@@ -39,10 +39,17 @@ const Navbar = () => {
             <li>
               <ActiveLink to={'/'}>Home</ActiveLink>
             </li>
-
             <li>
-              <ActiveLink to={'/'}>Bookings</ActiveLink>
+              <ActiveLink to={'/instructors'}>Instructors</ActiveLink>
             </li>
+            <li>
+              <ActiveLink to={'/classes'}>Classes</ActiveLink>
+            </li>
+            {user && (
+              <li>
+                <ActiveLink to={'/dashboard'}>Dashboard</ActiveLink>
+              </li>
+            )}
           </ul>
         </div>
         <Link
@@ -59,16 +66,23 @@ const Navbar = () => {
           <li>
             <ActiveLink to={'/'}>Home</ActiveLink>
           </li>
-
           <li>
-            <ActiveLink to={`/`}>Bookings</ActiveLink>
+            <ActiveLink to={'/instructors'}>Instructors</ActiveLink>
           </li>
+          <li>
+            <ActiveLink to={'/classes'}>Classes</ActiveLink>
+          </li>
+          {user && (
+            <li>
+              <ActiveLink to={'/dashboard'}>Dashboard</ActiveLink>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
         {user ? (
           <div>
-            <div className="dropdown dropdown-end ">
+            <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img
@@ -80,6 +94,7 @@ const Navbar = () => {
                         ? user.photoURL
                         : 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&ext=jpg&ga=GA1.2.1046565782.1676251229&semt=ais'
                     }
+                    alt="User Profile"
                   />
                 </div>
               </label>
@@ -88,10 +103,10 @@ const Navbar = () => {
                 className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box text-white"
               >
                 <li>
-                  <ActiveLink className="justify-between">Profile</ActiveLink>
+                  <ActiveLink to={'/profile'}>Profile</ActiveLink>
                 </li>
                 <li>
-                  <ActiveLink>Settings</ActiveLink>
+                  <ActiveLink to={'/settings'}>Settings</ActiveLink>
                 </li>
                 <li>
                   <Link onClick={handleSignOut}>Logout</Link>
