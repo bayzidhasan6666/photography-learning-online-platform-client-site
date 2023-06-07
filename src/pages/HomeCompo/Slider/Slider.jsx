@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
-const Banner = () => {
+const Slider = () => {
  const slides = [
    {
      title: 'Photography Workshops',
@@ -52,7 +52,7 @@ const Banner = () => {
         <div key={index} className=" ">
           <div className="w-full ">
             <img
-              className="rounded-lg w-96 h-96 md:h-[600px] lg:h-screen"
+              className=" w-96 h-96 md:h-[600px] lg:h-screen"
               src={slide.image}
               alt=""
             />
@@ -79,4 +79,4 @@ const Banner = () => {
   );
 };
 
-export default Banner;
+export default Slider;

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="footer items-center p-10 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500  text-white">
+    <footer className="footer items-center p-10 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 z-10  text-white">
       <div className="items-center grid-flow-col">
         <svg
           width="36"
