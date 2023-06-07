@@ -6,6 +6,7 @@ import Home from '../pages/HomeCompo/Home/Home';
 import Dashboard from '../pages/DashboardCompo/Dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
 import Check from './Check';
+import UserInfo from '../pages/UserCompo/UserInfo/UserInfo';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             <Check></Check>
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/profile',
+        element: <UserInfo></UserInfo>,
       },
     ],
   },
