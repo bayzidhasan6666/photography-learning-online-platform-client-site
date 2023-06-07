@@ -9,7 +9,6 @@ const Dashboard = () => {
         <div className="drawer lg:drawer-open mb-5">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content flex flex-col ">
-            {/* Page content here */}
             <label
               htmlFor="my-drawer-2"
               className="border px-3 py-2 bg-gradient-to-r from-purple-400 via-pink-500 to-pink-500 w-fit mt-20 lg:hidden"
@@ -20,7 +19,6 @@ const Dashboard = () => {
           <div className="drawer-side mt-14">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
             <ul className="menu p-4 w-80 h-full bg-gradient-to-r from-purple-400 via-pink-500 to-pink-500  text-white gap-2">
-              {/* Sidebar content here */}
               <li>
                 <ActiveLink>
                   <svg

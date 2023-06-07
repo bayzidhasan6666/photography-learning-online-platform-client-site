@@ -4,6 +4,8 @@ import Login from '../pages/AuthCompo/SignIn/Login';
 import SignUp from '../pages/AuthCompo/SignUp/SignUp';
 import Home from '../pages/HomeCompo/Home/Home';
 import Dashboard from '../pages/DashboardCompo/Dashboard/Dashboard';
+import PrivateRoute from './PrivateRoute';
+import Check from './Check';
 
 const router = createBrowserRouter([
   {
@@ -23,9 +25,18 @@ const router = createBrowserRouter([
         element: <Login></Login>,
       },
       {
-        path:'/dashboard',
-        element:<Dashboard></Dashboard>
-      }
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: '/check',
+        element: (
+          <PrivateRoute>
+            {' '}
+            <Check></Check>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
