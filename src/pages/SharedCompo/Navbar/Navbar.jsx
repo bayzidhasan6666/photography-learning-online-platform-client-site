@@ -1,8 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ActiveLink from '../../../ActiveLink/ActiveLink';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+  const { user,logOut } = useAuth();
+
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="navbar bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 sticky top-0 z-10">
       <div className="navbar-start">
@@ -25,14 +34,14 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm font-semibold dropdown-content mt-3 p-2 text-white shadow bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box w-52 "
+            className="menu menu-sm font-semibold dropdown-content mt-3 p-2 text-white shadow bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box w-52 gap-2"
           >
             <li>
               <ActiveLink to={'/'}>Home</ActiveLink>
             </li>
 
             <li>
-              <ActiveLink to={'/bookedTicket'}>Bookings</ActiveLink>
+              <ActiveLink to={'/'}>Bookings</ActiveLink>
             </li>
           </ul>
         </div>
@@ -46,41 +55,60 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu text-white font-semibold menu-horizontal px-1">
+        <ul className="menu gap-2 text-white font-semibold menu-horizontal px-1">
           <li>
             <ActiveLink to={'/'}>Home</ActiveLink>
           </li>
 
           <li>
-            <ActiveLink to={`/bookedTicket`}>Bookings</ActiveLink>
+            <ActiveLink to={`/`}>Bookings</ActiveLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img
-                src="https://www.designmantic.com/blog/wp-content/uploads/2020/01/Photography-Logos-1280x720.png"
-                alt="Profile"
-              />
+        {user ? (
+          <div>
+            <div className="dropdown dropdown-end ">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    title={
+                      user.displayName ? user.displayName : 'No Name Found'
+                    }
+                    src={
+                      user.photoURL
+                        ? user.photoURL
+                        : 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?size=626&ext=jpg&ga=GA1.2.1046565782.1676251229&semt=ais'
+                    }
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box text-white"
+              >
+                <li>
+                  <ActiveLink className="justify-between">Profile</ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink>Settings</ActiveLink>
+                </li>
+                <li>
+                  <Link onClick={handleSignOut}>Logout</Link>
+                </li>
+              </ul>
             </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box w-fit text-white"
-          >
-            <li>
-              <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
-          </ul>
-        </div>
+          </div>
+        ) : (
+          <>
+            <Link
+              to={`/login`}
+              className="px-3 py-2 hover:text-gray-300 border border-white text-white rounded-none capitalize"
+            >
+              Login
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
