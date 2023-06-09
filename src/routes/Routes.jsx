@@ -8,11 +8,13 @@ import PrivateRoute from './PrivateRoute';
 import UserInfo from '../pages/UserCompo/UserInfo/UserInfo';
 import ManageUsers from '../pages/DashboardCompo/Dashboard/ManageUsers/ManageUsers';
 import AddClasses from '../pages/DashboardCompo/AddClasses/AddClasses';
+import PageNotFound from '../components/PageNotFound/PageNotFound';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App></App>,
+    errorElement:<PageNotFound></PageNotFound>,
     children: [
       {
         path: '/',
