@@ -2,11 +2,13 @@ import React from 'react';
 import { FaArrowRight, FaUsers } from 'react-icons/fa';
 
 import ActiveLink from '../../../ActiveLink/ActiveLink';
+import useTitle from '../../../hooks/useTitle';
 
 const Dashboard = () => {
   // const isStudent = true;
   // const isInstructor = true;
   const isAdmin = true;
+  useTitle('Dashboard')
   return (
     <div>
       <div className="drawer lg:drawer-open mb-5">
