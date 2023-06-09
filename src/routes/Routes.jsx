@@ -7,6 +7,7 @@ import Dashboard from '../pages/DashboardCompo/Dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
 import UserInfo from '../pages/UserCompo/UserInfo/UserInfo';
 import ManageUsers from '../pages/DashboardCompo/Dashboard/ManageUsers/ManageUsers';
+import AddClasses from '../pages/DashboardCompo/AddClasses/AddClasses';
 
 const router = createBrowserRouter([
   {
@@ -36,12 +37,14 @@ const router = createBrowserRouter([
             <Dashboard></Dashboard>
           </PrivateRoute>
         ),
-        children: [
-          {
-            path: 'manageUsers',
-            element: <ManageUsers></ManageUsers>,
-          },
-        ],
+      },
+      {
+        path: 'dashboard/manageUsers',
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: 'dashboard/addClass',
+        element: <AddClasses></AddClasses>,
       },
     ],
   },

@@ -1,20 +1,33 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 
 const ManageUsers = () => {
-  const {} = useQuery([
-    'users',
-    async () => {
-      const res = await fetch(`http://localhost:5000/users`);
-      return res.json();
-    },
-  ]);
-  console.log('object');
+  const {
+    data: users,
+    isLoading,
+    isError,
+  } = useQuery(['users'], async () => {
+    const res = await fetch(`http://localhost:5000/users`);
+    return res.json();
+  });
+
+  console.log(users);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error occurred while fetching users.</p>;
+  }
+
   return (
     <>
       <h1 className="text-center text-2xl mt-32 font-bold font-serif">
         Total Users : {users.length}
       </h1>
+
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -29,7 +42,7 @@ const ManageUsers = () => {
           </thead>
           <tbody>
             {/* row */}
-            {users.map((user) => (
+            {users.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
@@ -52,9 +65,19 @@ const ManageUsers = () => {
                   </div>
                 </td>
                 <td>{user.email}</td>
-                <td>Purple</td>
+                <td>
+                  {user.role === 'admin' ? (
+                    'admin'
+                  ) : (
+                    <button>
+                      <FaUserShield></FaUserShield>
+                    </button>
+                  )}
+                </td>
                 <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
+                  <button className="btn btn-ghost btn-xs">
+                    <FaTrashAlt></FaTrashAlt>
+                  </button>
                 </th>
               </tr>
             ))}

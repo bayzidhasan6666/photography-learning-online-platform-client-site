@@ -94,7 +94,7 @@ const Dashboard = () => {
                   </ActiveLink>
                 </li>
                 <li>
-                  <ActiveLink to={`/addClass`}>
+                  <ActiveLink to={`/dashboard/addClass`}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5"
