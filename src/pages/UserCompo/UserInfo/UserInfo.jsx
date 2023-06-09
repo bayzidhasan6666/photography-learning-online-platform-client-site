@@ -26,9 +26,7 @@ const UserInfo = () => {
   }, [user]);
 
   const handleUpdateClick = () => {
-    // Update user information logic
     console.log('Updating user information:', userData);
-    // Perform the necessary update operation with the updated user data
   };
 
   const handleChange = (e) => {
