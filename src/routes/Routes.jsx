@@ -5,8 +5,8 @@ import SignUp from '../pages/AuthCompo/SignUp/SignUp';
 import Home from '../pages/HomeCompo/Home/Home';
 import Dashboard from '../pages/DashboardCompo/Dashboard/Dashboard';
 import PrivateRoute from './PrivateRoute';
-import Check from './Check';
 import UserInfo from '../pages/UserCompo/UserInfo/UserInfo';
+import ManageUsers from '../pages/DashboardCompo/Dashboard/ManageUsers/ManageUsers';
 
 const router = createBrowserRouter([
   {
@@ -18,29 +18,30 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/signUp',
+        path: 'signUp',
         element: <SignUp></SignUp>,
       },
       {
-        path: '/login',
+        path: 'login',
         element: <Login></Login>,
       },
       {
-        path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        path: 'profile',
+        element: <UserInfo></UserInfo>,
       },
       {
-        path: '/check',
+        path: '/dashboard',
         element: (
           <PrivateRoute>
-            {' '}
-            <Check></Check>
+            <Dashboard></Dashboard>
           </PrivateRoute>
         ),
-      },
-      {
-        path: '/profile',
-        element: <UserInfo></UserInfo>,
+        children: [
+          {
+            path: 'manageUsers',
+            element: <ManageUsers></ManageUsers>,
+          },
+        ],
       },
     ],
   },
