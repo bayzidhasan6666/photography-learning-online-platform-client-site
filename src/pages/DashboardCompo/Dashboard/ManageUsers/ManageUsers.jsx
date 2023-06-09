@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
+import useTitle from '../../../../hooks/useTitle';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
+  useTitle('Manage Users');
 
   useEffect(() => {
     fetch('http://localhost:5000/users')
