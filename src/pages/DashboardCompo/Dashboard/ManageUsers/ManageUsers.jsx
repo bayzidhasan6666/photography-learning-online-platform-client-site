@@ -1,90 +1,179 @@
-import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const ManageUsers = () => {
-  const {
-    data: users,
-    isLoading,
-    isError,
-  } = useQuery(['users'], async () => {
-    const res = await fetch(`http://localhost:5000/users`);
-    return res.json();
-  });
+  const [users, setUsers] = useState([]);
 
-  console.log(users);
+  useEffect(() => {
+    fetch('http://localhost:5000/users')
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
+  const handleDeleteUser = (id) => {
+    fetch(`http://localhost:5000/users/${id}`, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUsers((prevUsers) => prevUsers.filter((user) => user._id !== id));
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'User deleted successfully',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'An error occurred while deleting the user',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      });
+  };
 
-  if (isError) {
-    return <p>Error occurred while fetching users.</p>;
-  }
+  const handleMakeInstructor = (id) => {
+    fetch(`http://localhost:5000/users/instructor/${id}`, {
+      method: 'PATCH',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUsers((prevUsers) =>
+          prevUsers.map((user) => {
+            if (user._id === id) {
+              return { ...user, role: 'instructor' };
+            }
+            return user;
+          })
+        );
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'User made an instructor successfully',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'An error occurred while making the user an instructor',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      });
+  };
+
+  const handleMakeAdmin = (id) => {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: 'PATCH',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUsers((prevUsers) =>
+          prevUsers.map((user) => {
+            if (user._id === id) {
+              return { ...user, role: 'admin' };
+            }
+            return user;
+          })
+        );
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'User made an admin successfully',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'An error occurred while making the user an admin',
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      });
+  };
 
   return (
-    <>
-      <h1 className="text-center text-2xl mt-32 font-bold font-serif">
-        Total Users : {users.length}
-      </h1>
-
-      <div className="overflow-x-auto">
-        <table className="table">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row */}
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <th>{index + 1}</th>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src={
-                            user.photoUrl
-                              ? user.photoUrl
-                              : 'https://e0.pxfuel.com/wallpapers/355/72/desktop-wallpaper-cartoon-boy-full-iphone-2020-cute-cartoon-boy-thumbnail.jpg'
-                          }
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">{user.name}</div>
-                    </div>
-                  </div>
-                </td>
-                <td>{user.email}</td>
-                <td>
-                  {user.role === 'admin' ? (
-                    'admin'
-                  ) : (
-                    <button>
-                      <FaUserShield></FaUserShield>
+    <div>
+      <h1>Manage Users</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user._id}>
+              <td>{user.name}</td>
+              <td>{user.email}</td>
+              <td>
+                {user.role === 'admin' ? (
+                  'admin'
+                ) : user.role === 'instructor' ? (
+                  'instructor'
+                ) : (
+                  <>
+                    <button onClick={() => handleMakeInstructor(user._id)}>
+                      Make Instructor
                     </button>
-                  )}
-                </td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">
-                    <FaTrashAlt></FaTrashAlt>
-                  </button>
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+                    <button onClick={() => handleMakeAdmin(user._id)}>
+                      Make Admin
+                    </button>
+                  </>
+                )}
+              </td>
+              <td>
+                <button onClick={() => handleDeleteUser(user._id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

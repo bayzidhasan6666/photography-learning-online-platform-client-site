@@ -30,7 +30,7 @@
     "sass": "^1.62.1",
     "sort-by": "^1.2.0",
     "stripe": "^12.8.0",
-    "sweetalert2": "^11.7.11"
+    "sweetalert2": "^11.7.12"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
