@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import SocialLogin from '../../../components/SocialLogin/SocialLogin';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -25,12 +26,35 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    signIn(email, password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      toast.success('Log In Successful');
-      navigate(from, { replace: true });
-    });
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: `User logged in successful`,
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'User not found!',
+          text: `Please check your email & password`,
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+      });
   };
 
   useEffect(() => {
