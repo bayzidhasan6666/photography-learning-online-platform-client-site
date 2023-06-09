@@ -132,47 +132,74 @@ const ManageUsers = () => {
   };
 
   return (
-    <div>
-      <h1>Manage Users</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
-                {user.role === 'admin' ? (
-                  'admin'
-                ) : user.role === 'instructor' ? (
-                  'instructor'
-                ) : (
-                  <>
-                    <button onClick={() => handleMakeInstructor(user._id)}>
-                      Make Instructor
-                    </button>
-                    <button onClick={() => handleMakeAdmin(user._id)}>
-                      Make Admin
-                    </button>
-                  </>
-                )}
-              </td>
-              <td>
-                <button onClick={() => handleDeleteUser(user._id)}>
-                  Delete
-                </button>
-              </td>
+    <div className="container mx-auto py-6">
+      <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
+      <div className="overflow-x-auto">
+        <table className="table-auto w-full border-collapse border">
+          <thead>
+            <tr>
+              <th className="px-4 py-2 border">#</th>
+              <th className="px-4 py-2 border">Name</th>
+              <th className="px-4 py-2 border">Email</th>
+              <th className="px-4 py-2 border">Role</th>
+              <th className="px-4 py-2 border">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user, index) => (
+              <tr key={user._id} className="border">
+                <td className="px-4 py-2 border">{index + 1}</td>
+                <td className="px-4 py-2 border">
+                  <div className="flex items-center">
+                    <div className="h-8 w-8 rounded-full overflow-hidden">
+                      <img
+                        src={
+                          user.photoUrl
+                            ? user.photoUrl
+                            : 'https://e0.pxfuel.com/wallpapers/355/72/desktop-wallpaper-cartoon-boy-full-iphone-2020-cute-cartoon-boy-thumbnail.jpg'
+                        }
+                        alt="Avatar Tailwind CSS Component"
+                      />
+                    </div>
+                    <span className="ml-2">{user.name}</span>
+                  </div>
+                </td>
+                <td className="px-4 py-2 border">{user.email}</td>
+                <td className="px-4 py-2 border">
+                  {user.role === 'admin' ? (
+                    'admin'
+                  ) : user.role === 'instructor' ? (
+                    'instructor'
+                  ) : (
+                    <div className="flex space-x-2">
+                      <button
+                        className="bg-pink-400 hover:bg-pink-500 text-white font-semibold py-2 px-4 rounded"
+                        onClick={() => handleMakeInstructor(user._id)}
+                      >
+                        Make Instructor
+                      </button>
+                      <button
+                        className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
+                        onClick={() => handleMakeAdmin(user._id)}
+                      >
+                        Make Admin
+                      </button>
+                    </div>
+                  )}
+                </td>
+                <td className="px-4 py-2 border">
+                  <button
+                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
+                    onClick={() => handleDeleteUser(user._id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
