@@ -33,7 +33,7 @@ const PopularClasses = () => {
 
   return (
     <div>
-      <h2 className="text-2xl bg-gradient-to-b from-purple-500 to-red-500 bg-clip-text text-transparent font-bold text-center my-5">
+      <h2 className="text-2xl bg-gradient-to-b from-purple-500 to-red-500 bg-clip-text text-transparent uppercase font-bold text-center my-10">
         <Typewriter
           options={{
             strings: ['Our Popular Classes'],

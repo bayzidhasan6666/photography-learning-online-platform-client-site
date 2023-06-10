@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Slider from '../Slider/Slider';
 import PopularClasses from '../PopularClasses/PopularClasses';
+import Cameras from '../../Cameras/Cameras';
 
 const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -31,6 +32,7 @@ const Home = () => {
         </div>
         <Slider />
         <PopularClasses></PopularClasses>
+        <Cameras></Cameras>
       </div>
     </div>
   );
