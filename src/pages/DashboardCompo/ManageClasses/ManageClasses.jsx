@@ -6,6 +6,10 @@ const ManageClasses = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [feedback, setFeedback] = useState('');
 
+  useEffect(() => {
+    fetchClasses();
+  }, []);
+
   const fetchClasses = async () => {
     try {
       const response = await fetch('http://localhost:5000/classes');
@@ -15,10 +19,6 @@ const ManageClasses = () => {
       console.error('Error:', error);
     }
   };
-
-  useEffect(() => {
-    fetchClasses();
-  }, []);
 
   const denyClass = (classItem) => {
     setSelectedClass(classItem);
@@ -109,18 +109,28 @@ const ManageClasses = () => {
                 </td>
                 <td className="py-4 px-6 border-b">{classItem.price}</td>
                 <td className="py-4 px-6 border-b">
-                  <button
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2"
-                    onClick={() => approveClass(classItem)}
-                  >
-                    Approve
-                  </button>
-                  <button
-                    className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-                    onClick={() => denyClass(classItem)}
-                  >
-                    Deny
-                  </button>
+                  {classItem.status === 'pending' && (
+                    <>
+                      <button
+                        className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2"
+                        onClick={() => approveClass(classItem)}
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                        onClick={() => denyClass(classItem)}
+                      >
+                        Deny
+                      </button>
+                    </>
+                  )}
+                  {classItem.status === 'approved' && (
+                    <span className="text-green-500 font-bold">Approved</span>
+                  )}
+                  {classItem.status === 'denied' && (
+                    <span className="text-red-500 font-bold">Denied</span>
+                  )}
                 </td>
               </tr>
             ))}

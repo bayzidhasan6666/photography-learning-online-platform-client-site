@@ -13,6 +13,7 @@ import SelectedClasses from '../pages/DashboardCompo/StudentDb/SelectedClasses/S
 import Payment from '../pages/DashboardCompo/Payment/Payment';
 import MyClasses from '../pages/DashboardCompo/InstractorDb/MyClasses/MyClasses';
 import ManageClasses from '../pages/DashboardCompo/ManageClasses/ManageClasses';
+import Instructors from '../pages/Instructors/Instructors';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
+      },
+      {
+        path: '/instructors',
+        element: <Instructors></Instructors>,
       },
       {
         path: 'signUp',

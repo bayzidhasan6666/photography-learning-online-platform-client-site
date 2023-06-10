@@ -18,15 +18,34 @@ const MyClasses = () => {
     fetchClasses();
   }, []);
 
+  const updateClassStatus = (classId, newStatus) => {
+    setClasses((prevClasses) =>
+      prevClasses.map((classItem) => {
+        if (classItem._id === classId) {
+          return { ...classItem, status: newStatus };
+        }
+        return classItem;
+      })
+    );
+  };
+
   return (
     <div className="p-4">
-      <h2 className="text-xl text-center uppercase font-bold mb-6">My Classes</h2>
+      <h2 className="text-xl text-center uppercase font-bold mb-6">
+        My Classes
+      </h2>
       {classes.length === 0 ? (
         <p>No classes found.</p>
       ) : (
         <table className="w-full border-collapse">
           <thead>
             <tr>
+              <th className="py-3 px-6 bg-gray-200 text-gray-600 font-bold uppercase border-b">
+                #
+              </th>
+              <th className="py-3 px-6 bg-gray-200 text-gray-600 font-bold uppercase border-b">
+                Photo
+              </th>
               <th className="py-3 px-6 bg-gray-200 text-gray-600 font-bold uppercase border-b">
                 Class Name
               </th>
@@ -45,8 +64,21 @@ const MyClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {classes.map((classItem) => (
-              <tr key={classItem._id} className="hover:bg-gray-100">
+            {classes.map((classItem, index) => (
+              <tr
+                key={classItem._id}
+                className={`hover:bg-gray-100 ${
+                  classItem.status === 'denied' ? 'bg-red-100' : ''
+                }`}
+              >
+                <td className="py-4 px-6 border-b">{index + 1}</td>
+                <td className="py-4 px-6 border-b">
+                  <img
+                    className="w-12 h-12 rounded-full"
+                    src={classItem.classImage}
+                    alt=""
+                  />
+                </td>
                 <td className="py-4 px-6 border-b">{classItem.className}</td>
                 <td className="py-4 px-6 border-b">{classItem.status}</td>
                 <td className="py-4 px-6 border-b">
@@ -56,7 +88,10 @@ const MyClasses = () => {
                   {classItem.status === 'denied' ? classItem.feedback : '-'}
                 </td>
                 <td className="py-4 px-6 border-b">
-                  <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded">
+                  <button
+                    className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => updateClassStatus(classItem._id, 'approved')}
+                  >
                     Update
                   </button>
                 </td>
