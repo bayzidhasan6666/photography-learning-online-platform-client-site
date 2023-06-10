@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import '../SignIn/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import SocialLogin from '../../../components/SocialLogin/SocialLogin';
 import Swal from 'sweetalert2';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const SignUp = () => {
   const {
@@ -18,9 +19,26 @@ const SignUp = () => {
   } = useForm();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const onSubmit = (data) => {
     console.log(data);
+    if (data.password !== data.confirmPassword) {
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: 'Passwords do not match',
+        showConfirmButton: false,
+        timer: 2000,
+        customClass: {
+          container: 'max-w-sm mx-auto mt-10 bg-white rounded-lg shadow-lg p-4',
+          title: 'text-xl text-red-500 font-semibold',
+        },
+      });
+      return;
+    }
+
     createUser(data.email, data.password)
       .then((result) => {
         const createdUser = result.user;
@@ -42,18 +60,18 @@ const SignUp = () => {
             .then((res) => res.json())
             .then((data) => {
               if (data.insertedId) {
-                 Swal.fire({
-                   position: 'top-end',
-                   icon: 'success',
-                   title: 'User Sign Up Successfully',
-                   showConfirmButton: false,
-                   timer: 2000,
-                   customClass: {
-                     container:
-                       'max-w-sm mx-auto mt-10 bg-white rounded-lg shadow-lg p-4',
-                     title: 'text-xl text-green-500 font-semibold',
-                   },
-                 });;
+                Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'User Sign Up Successfully',
+                  showConfirmButton: false,
+                  timer: 2000,
+                  customClass: {
+                    container:
+                      'max-w-sm mx-auto mt-10 bg-white rounded-lg shadow-lg p-4',
+                    title: 'text-xl text-green-500 font-semibold',
+                  },
+                });
               }
             });
           reset();
@@ -80,10 +98,18 @@ const SignUp = () => {
       });
   };
 
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleToggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
   return (
     <>
       <div className="hero background min-h-screen border shadow-xl my-10">
-        <div className="hero-content flex-col md:flex-row-reverse">
+        <div className="hero-content flex-col ">
           <div className="card w-[500px]">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
@@ -135,19 +161,27 @@ const SignUp = () => {
 
               {/* ---------------------Password Validation Start------------- */}
               <div className="form-control">
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  className="p-2 border-2"
-                  {...register('password', {
-                    required: true,
-                    minLength: 6,
-                    maxLength: 20,
-                    pattern:
-                      /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]/,
-                  })}
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    name="password"
+                    placeholder="Password"
+                    className="p-2 border-2 pr-10"
+                    {...register('password', {
+                      required: true,
+                      minLength: 6,
+                      maxLength: 20,
+                      pattern:
+                        /(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])[a-zA-Z0-9!#$%&?]/,
+                    })}
+                  />
+                  <span
+                    className="absolute text-white right-3 top-2 cursor-pointer"
+                    onClick={handleTogglePassword}
+                  >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
+                </div>
                 {errors.password && errors.password.type === 'required' && (
                   <span className="text-red-600 shadow-xl italic">
                     Password is required.
@@ -253,6 +287,32 @@ const SignUp = () => {
                 )}
               </div>
               {/* --------------------password validation end---------------- */}
+              <div className="form-control">
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    className="p-2 border-2 pr-10"
+                    {...register('confirmPassword', {
+                      required: true,
+                      validate: (value) =>
+                        value === watch('password') || 'Passwords do not match',
+                    })}
+                  />
+                  <span
+                    className="absolute text-white right-3 top-2 cursor-pointer"
+                    onClick={handleToggleConfirmPassword}
+                  >
+                    {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                  </span>
+                </div>
+                {errors.confirmPassword && (
+                  <span className="text-red-600 shadow-xl italic">
+                    {errors.confirmPassword.message}
+                  </span>
+                )}
+              </div>
               <div className="form-control mt-6">
                 <input
                   className={` bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 cursor-pointer
@@ -264,21 +324,17 @@ const SignUp = () => {
             </form>
             <div>
               <p className="font-semibold text-black text-center">
-                Already have an account ?
-                <span>
-                  {' '}
-                  <Link to={`/login`} className="link text-white">
+                Already have an account?{' '}
+                <Link to="/LogIn">
+                  <span className="font-semibold underline text-white">
                     Sign In
-                  </Link>
-                </span>
+                  </span>
+                </Link>
               </p>
-              <div className="">
-                <h1 className="text-center font-semibold my-2">
-                  Or, Sign Up With
-                </h1>
-                <SocialLogin></SocialLogin>
-              </div>
             </div>
+          </div>
+          <div className="card w-[500px]">
+            <SocialLogin />
           </div>
         </div>
       </div>

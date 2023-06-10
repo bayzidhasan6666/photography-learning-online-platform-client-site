@@ -11,10 +11,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import SocialLogin from '../../../components/SocialLogin/SocialLogin';
 import Swal from 'sweetalert2';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -69,6 +71,11 @@ const Login = () => {
       setDisabled(true);
     }
   };
+
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <>
       <div className="hero background min-h-screen border shadow-xl my-10">
@@ -87,18 +94,19 @@ const Login = () => {
                   className="p-2 border-2"
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control password-control">
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
-                  className="p-2 border-2 "
+                  className="p-2 border-2"
                 />
-                <label className="label">
-                  <a href="#" className="text-sm link  text-white">
-                    Forgot password?
-                  </a>
-                </label>
+                <span
+                  className="password-toggle pt-2 "
+                  onClick={handleTogglePassword}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </span>
               </div>
               <div className="form-control">
                 <label className="label">
@@ -107,8 +115,8 @@ const Login = () => {
                 <input
                   type="text"
                   name="captcha"
-                  placeholder="type here"
-                  className="p-2 border-2 "
+                  placeholder="Type here"
+                  className="p-2 border-2"
                   onBlur={handleValidateCaptcha}
                 />
               </div>
@@ -127,7 +135,7 @@ const Login = () => {
             </form>
             <div>
               <p className="font-semibold text-center text-black">
-                Don't have an account ? Please
+                Don't have an account? Please
                 <span>
                   {' '}
                   <Link to={`/signUp`} className="link text-white">
