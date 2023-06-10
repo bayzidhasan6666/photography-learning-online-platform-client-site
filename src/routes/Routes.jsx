@@ -11,6 +11,8 @@ import AddClasses from '../pages/DashboardCompo/InstractorDb/AddClasses/AddClass
 import PageNotFound from '../components/PageNotFound/PageNotFound';
 import SelectedClasses from '../pages/DashboardCompo/StudentDb/SelectedClasses/SelectedClasses';
 import Payment from '../pages/DashboardCompo/Payment/Payment';
+import MyClasses from '../pages/DashboardCompo/InstractorDb/MyClasses/MyClasses';
+import ManageClasses from '../pages/DashboardCompo/ManageClasses/ManageClasses';
 
 const router = createBrowserRouter([
   {
@@ -43,14 +45,25 @@ const router = createBrowserRouter([
         ),
         children: [],
       },
+      // admin routes-----------
       {
         path: 'dashboard/manageUsers',
         element: <ManageUsers></ManageUsers>,
       },
       {
+        path: 'dashboard/manageClasses',
+        element: <ManageClasses></ManageClasses>,
+      },
+      // instructor routes-------
+      {
         path: 'dashboard/addClasses',
         element: <AddClasses></AddClasses>,
       },
+      {
+        path: 'dashboard/myClasses',
+        element: <MyClasses></MyClasses>,
+      },
+      // student routes---------
       {
         path: 'dashboard/enrolledClass',
         element: <SelectedClasses></SelectedClasses>,

@@ -12,72 +12,73 @@ const AddClass = () => {
   const [isLoading, setIsLoading] = useState(false);
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
-  const handleFormSubmit = async (data) => {
-    setIsLoading(true);
-    const formData = new FormData();
-    formData.append('image', data.image[0]);
+ const handleFormSubmit = async (data) => {
+   setIsLoading(true);
+   const formData = new FormData();
+   formData.append('image', data.image[0]);
 
-    try {
-      const res = await fetch(img_hosting_url, {
-        method: 'POST',
-        body: formData,
-      });
-      const imgResponse = await res.json();
+   try {
+     const res = await fetch(img_hosting_url, {
+       method: 'POST',
+       body: formData,
+     });
+     const imgResponse = await res.json();
 
-      if (imgResponse.success) {
-        const imgURL = imgResponse.data.display_url;
-        const {
-          className,
-          instructorName,
-          instructorEmail,
-          price,
-          availableSeats,
-        } = data;
-        const newClass = {
-          className,
-          instructorName,
-          instructorEmail,
-          price: parseFloat(price),
-          classImage: imgURL,
-          availableSeats: parseInt(availableSeats),
-        };
+     if (imgResponse.success) {
+       const imgURL = imgResponse.data.display_url;
+       const {
+         className,
+         instructorName,
+         instructorEmail,
+         price,
+         availableSeats,
+       } = data;
+       const newClass = {
+         className,
+         instructorName,
+         instructorEmail,
+         price: parseFloat(price),
+         classImage: imgURL,
+         availableSeats: parseInt(availableSeats),
+         status: 'pending', // Initial status is pending
+         totalEnrolledStudents: 0, // Initial total enrolled students is 0
+         feedback: '', // Initial feedback is empty
+       };
 
-        console.log(newClass);
+       console.log(newClass);
 
-        try {
-          const response = await fetch('http://localhost:5000/classes', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newClass),
-          });
+       try {
+         const response = await fetch('http://localhost:5000/classes', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(newClass),
+         });
 
-          if (response.ok) {
-            reset();
+         if (response.ok) {
+           reset();
            Swal.fire({
-             icon: 'success',
-             title: 'Success!',
-             text: 'Class post successfully',
-             toast: true,
              position: 'top-end',
+             icon: 'success',
+             title: 'Class added successfully',
              showConfirmButton: false,
-             timer: 5000,
-             timerProgressBar: true,
+             timer: 1500,
            });
-          } else {
-            console.log('Failed to create class:', response.statusText);
-          }
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+         } else {
+           console.log('Failed to create class:', response.statusText);
+         }
+       } catch (error) {
+         console.error('Error:', error);
+       }
+     }
+   } catch (error) {
+     console.error(error);
+   } finally {
+     setIsLoading(false);
+   }
+ };
+
 
   return (
     <div className="max-w-xl mx-auto mt-10">
