@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from '../Slider/Slider';
+import PopularClasses from '../PopularClasses/PopularClasses';
 
 const Home = () => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -29,6 +30,7 @@ const Home = () => {
           </label>
         </div>
         <Slider />
+        <PopularClasses></PopularClasses>
       </div>
     </div>
   );

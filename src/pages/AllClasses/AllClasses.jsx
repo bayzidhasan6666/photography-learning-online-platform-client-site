@@ -31,7 +31,7 @@ const AllClasses = () => {
             (
               <div
                 key={cls._id}
-                className="card h-96 w-96 bg-base-100 shadow-xl"
+                className="card h-96 w-96 mx-auto bg-base-100 shadow-xl"
               >
                 <figure>
                   <img
