@@ -14,6 +14,7 @@ import Payment from '../pages/DashboardCompo/Payment/Payment';
 import MyClasses from '../pages/DashboardCompo/InstractorDb/MyClasses/MyClasses';
 import ManageClasses from '../pages/DashboardCompo/ManageClasses/ManageClasses';
 import Instructors from '../pages/Instructors/Instructors';
+import AllClasses from '../pages/AllClasses/AllClasses';
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: '/instructors',
+        path: 'instructors',
         element: <Instructors></Instructors>,
+      },
+      {
+        path: 'allClasses',
+        element: <AllClasses></AllClasses>,
       },
       {
         path: 'signUp',

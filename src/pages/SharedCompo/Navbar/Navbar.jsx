@@ -43,7 +43,7 @@ const Navbar = () => {
               <ActiveLink to={'/instructors'}>Instructors</ActiveLink>
             </li>
             <li>
-              <ActiveLink to={'/classes'}>Classes</ActiveLink>
+              <ActiveLink to={'/allClasses'}>Classes</ActiveLink>
             </li>
             {user && (
               <li>
@@ -70,7 +70,7 @@ const Navbar = () => {
             <ActiveLink to={'/instructors'}>Instructors</ActiveLink>
           </li>
           <li>
-            <ActiveLink to={'/classes'}>Classes</ActiveLink>
+            <ActiveLink to={'/allClasses'}>Classes</ActiveLink>
           </li>
           {user && (
             <li>
