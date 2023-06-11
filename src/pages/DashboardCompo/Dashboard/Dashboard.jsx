@@ -32,7 +32,7 @@ const Dashboard = () => {
           <ul className="menu md:mt-20 lg:mt-0 p-4 w-80 h-full bg-gradient-to-r from-purple-400 via-pink-500 to-pink-500 text-white gap-2">
             {/* Admin Dashboard */}
             <li>
-              <ActiveLink to={`/dashboard/manageClasses`}>
+              <ActiveLink to={`/`}>
                 <FaHome className="mr-2" />
                 Home
               </ActiveLink>
@@ -72,7 +72,7 @@ const Dashboard = () => {
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink to={'/dashboard/myClasses'}>
+              <ActiveLink to={'/dashboard/selectedClass'}>
                 <FaChalkboardTeacher className="mr-2" />
                 My Selected Classes
               </ActiveLink>

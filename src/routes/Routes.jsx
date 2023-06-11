@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       },
       // student routes---------
       {
-        path: 'dashboard/enrolledClass',
+        path: 'dashboard/selectedClass',
         element: <SelectedClasses></SelectedClasses>,
       },
       {

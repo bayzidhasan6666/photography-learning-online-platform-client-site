@@ -72,6 +72,9 @@ const PopularClasses = () => {
                   $ {cls.price}
                 </div>
                 <div className="badge text-teal-400 cursor-pointer font-semibold badge-outline">
+                 Select Class
+                </div>
+                <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
                   Enroll Now
                 </div>
               </div>
