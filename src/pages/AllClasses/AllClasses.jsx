@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AllClasses = () => {
@@ -10,6 +11,8 @@ const AllClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
+  const [selectedClasses, setSelectedClasses] = useState([]); // State to store selected classes
+
   const {
     data: classes,
     isLoading,
@@ -39,7 +42,6 @@ const AllClasses = () => {
         instructorName,
         instructorEmail,
       } = item;
-      console.log(className, classImage, price);
 
       const classItem = {
         classId: _id,
@@ -50,22 +52,36 @@ const AllClasses = () => {
         instructorEmail,
         instructorName,
       };
-      fetch(`http://localhost:5000/selectedClass`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(classItem),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.insertedId) {
-            refetch(); // Call the refetch function to update the data
+
+      // Check if the class is already added
+      const isClassAlreadyAdded = selectedClasses.some(
+        (cls) => cls.classId === _id
+      );
+      if (isClassAlreadyAdded) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${className} is already added.`,
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        return;
+      }
+
+      axios
+        .post('http://localhost:5000/selectedClass', classItem)
+        .then((response) => {
+          console.log(response.data);
+          if (response.data.insertedId) {
+            setSelectedClasses([...selectedClasses, classItem]); // Update selectedClasses state
+            refetch();
             Swal.fire({
               icon: 'success',
               title: 'Success!',
-              text: `${className} Select Successfully`,
+              text: `${className} added successfully`,
               toast: true,
               position: 'top-end',
               showConfirmButton: false,
@@ -73,6 +89,9 @@ const AllClasses = () => {
               timerProgressBar: true,
             });
           }
+        })
+        .catch((error) => {
+          console.error(error);
         });
     } else {
       Swal.fire({
