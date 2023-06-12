@@ -5,7 +5,7 @@ import Typewriter from 'typewriter-effect';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
@@ -165,9 +165,12 @@ const PopularClasses = () => {
                 >
                   Select Class
                 </div>
-                <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
-                  Enroll Now
-                </div>
+                <Link to={`/dashboard/payment`}>
+                  {' '}
+                  <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
+                    Enroll Now
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

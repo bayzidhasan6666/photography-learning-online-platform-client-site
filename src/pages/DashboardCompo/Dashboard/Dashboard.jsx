@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaArrowRight,
   FaPlus,
@@ -10,9 +10,43 @@ import {
 } from 'react-icons/fa';
 import useTitle from '../../../hooks/useTitle';
 import ActiveLink from '../../../ActiveLink/ActiveLink';
+import axios from 'axios'; // Import axios
+import useAuth from '../../../hooks/useAuth';
 
 const Dashboard = () => {
   useTitle('Dashboard');
+  const { user: currentUser } = useAuth();
+  const [authenticatedUser, setAuthenticatedUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/users');
+        const finalUser = response.data.find(
+          (user) =>
+            user.email.trim().toLowerCase() ===
+            currentUser.email.trim().toLowerCase()
+        );
+
+        if (finalUser) {
+          setAuthenticatedUser(finalUser);
+        } else {
+          console.error('User not found.');
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUser();
+  }, [currentUser.email]);
+
+  if (!authenticatedUser) {
+    return <div>Loading...</div>;
+  }
+
+  const { role } = authenticatedUser;
+  console.log(role);
 
   return (
     <div className="drawer lg:drawer-open  dashboard-container">
@@ -31,58 +65,70 @@ const Dashboard = () => {
         <div className="menu-container">
           <ul className="menu md:mt-20 lg:mt-0 p-4 w-80 h-full bg-gradient-to-r from-purple-400 via-pink-500 to-pink-500 text-white gap-2">
             {/* Admin Dashboard */}
-            <li>
-              <ActiveLink to={`/`}>
-                <FaHome className="mr-2" />
-                Home
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink to={`/dashboard/manageClasses`}>
-                <FaFolderOpen className="mr-2" />
-                Manage Classes
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink to={`/dashboard/manageUsers`}>
-                <FaUserFriends className="mr-2" />
-                Manage Users
-              </ActiveLink>
-            </li>
+            {role === 'admin' && (
+              <>
+                <li>
+                  <ActiveLink to={`/`}>
+                    <FaHome className="mr-2" />
+                    Home
+                  </ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink to={`/dashboard/manageClasses`}>
+                    <FaFolderOpen className="mr-2" />
+                    Manage Classes
+                  </ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink to={`/dashboard/manageUsers`}>
+                    <FaUserFriends className="mr-2" />
+                    Manage Users
+                  </ActiveLink>
+                </li>
+              </>
+            )}
 
             {/* Instructor Dashboard */}
-            <li>
-              <ActiveLink to={`/dashboard/addClasses`}>
-                <FaPlus className="mr-2" />
-                Add a Class
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink to={`/dashboard/myClasses`}>
-                <FaChalkboardTeacher className="mr-2" />
-                My Classes
-              </ActiveLink>
-            </li>
+            {role === 'instructor' && (
+              <>
+                <li>
+                  <ActiveLink to={`/dashboard/addClasses`}>
+                    <FaPlus className="mr-2" />
+                    Add a Class
+                  </ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink to={`/dashboard/myClasses`}>
+                    <FaChalkboardTeacher className="mr-2" />
+                    My Classes
+                  </ActiveLink>
+                </li>
+              </>
+            )}
 
             {/* Default Dashboard */}
-            <li>
-              <ActiveLink to={'/dashboard/studentHome'}>
-                <FaHome className="mr-2" />
-                Home
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink to={'/dashboard/selectedClass'}>
-                <FaChalkboardTeacher className="mr-2" />
-                My Selected Classes
-              </ActiveLink>
-            </li>
-            <li>
-              <ActiveLink to={`/dashboard/payment`}>
-                <FaFileInvoiceDollar className="mr-2" />
-                Payment
-              </ActiveLink>
-            </li>
+            {role !== 'admin' && role !== 'instructor' && (
+              <>
+                <li>
+                  <ActiveLink to={'/dashboard/studentHome'}>
+                    <FaHome className="mr-2" />
+                    Home
+                  </ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink to={'/dashboard/selectedClass'}>
+                    <FaChalkboardTeacher className="mr-2" />
+                    My Selected Classes
+                  </ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink to={`/dashboard/enrolledClass`}>
+                    <FaFileInvoiceDollar className="mr-2" />
+                    My Enrolled Class
+                  </ActiveLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

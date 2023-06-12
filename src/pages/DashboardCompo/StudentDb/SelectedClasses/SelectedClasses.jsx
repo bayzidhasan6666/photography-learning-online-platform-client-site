@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SelectedClasses = () => {
   const [selectedClasses, setSelectedClasses] = useState([]);
+  const [selectedClass, setSelectedClass] = useState(null); // নতুন স্টেট যুক্ত করা হয়েছে
   const [axiosSecure] = useAxiosSecure();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axiosSecure
@@ -44,6 +47,11 @@ const SelectedClasses = () => {
     });
   };
 
+  const handlePrice = (cls) => {
+    setSelectedClass(cls); // সেলেক্ট করা ক্লাসের ডাটা সেট করা হচ্ছে স্টেটে
+    navigate('/dashboard/payment');
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold text-center my-5">
@@ -53,7 +61,7 @@ const SelectedClasses = () => {
         {selectedClasses.map((cls) => (
           <div
             key={cls._id}
-            className="  w-full bg-white shadow-md rounded-tr-3xl flex  justify-between"
+            className=" w-full h-58 bg-white shadow-md rounded-tr-3xl md:flex  justify-between"
           >
             <figure className="flex justify-center">
               <img
@@ -63,7 +71,7 @@ const SelectedClasses = () => {
                     : 'https://i.pinimg.com/736x/67/8e/73/678e73a79d5fd7575e945ff75ee975eb.jpg'
                 }
                 alt={cls.className}
-                className="w-64 h-full object-cover rounded-tr-3xl"
+                className="md:w-64  md:h-58 object-cover rounded-tr-3xl"
               />
             </figure>
             <div className="p-4">
@@ -75,13 +83,21 @@ const SelectedClasses = () => {
               <p className="text-gray-700 mb-2">
                 Enrolled Students: {cls.totalEnrolledStudents}
               </p>
-              <div className=" py-2">
+              <div className="flex items-center py-2">
                 <button
                   className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md"
                   onClick={() => handleDeleteClass(cls._id)}
                 >
                   Remove
                 </button>
+                <Link>
+                  <button
+                    onClick={() => handlePrice(cls)}
+                    className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-md ml-2"
+                  >
+                    Pay
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

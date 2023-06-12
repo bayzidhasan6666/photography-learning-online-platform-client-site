@@ -15,6 +15,8 @@ import MyClasses from '../pages/DashboardCompo/InstractorDb/MyClasses/MyClasses'
 import ManageClasses from '../pages/DashboardCompo/ManageClasses/ManageClasses';
 import Instructors from '../pages/Instructors/Instructors';
 import AllClasses from '../pages/AllClasses/AllClasses';
+import AdminRoute from './AdminRoute';
+import InstructorRoute from './InstructorRoute';
 
 const router = createBrowserRouter([
   {
@@ -58,20 +60,38 @@ const router = createBrowserRouter([
       // admin routes-----------
       {
         path: 'dashboard/manageUsers',
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: 'dashboard/manageClasses',
-        element: <ManageClasses></ManageClasses>,
+        element: (
+          <AdminRoute>
+            <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
       },
       // instructor routes-------
       {
         path: 'dashboard/addClasses',
-        element: <AddClasses></AddClasses>,
+        element: (
+          <InstructorRoute>
+            {' '}
+            <AddClasses></AddClasses>
+          </InstructorRoute>
+        ),
       },
       {
         path: 'dashboard/myClasses',
-        element: <MyClasses></MyClasses>,
+        element: (
+          <InstructorRoute>
+            {' '}
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
       },
       // student routes---------
       {

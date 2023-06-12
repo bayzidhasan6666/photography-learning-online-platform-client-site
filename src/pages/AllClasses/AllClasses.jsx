@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 
@@ -11,7 +11,7 @@ const AllClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedClasses, setSelectedClasses] = useState([]); // State to store selected classes
+  const [selectedClasses, setSelectedClasses] = useState([]); 
 
   const {
     data: classes,
@@ -76,7 +76,7 @@ const AllClasses = () => {
         .then((response) => {
           console.log(response.data);
           if (response.data.insertedId) {
-            setSelectedClasses([...selectedClasses, classItem]); // Update selectedClasses state
+            setSelectedClasses([...selectedClasses, classItem]); 
             refetch();
             Swal.fire({
               icon: 'success',
@@ -143,9 +143,11 @@ const AllClasses = () => {
                 >
                   Select Class
                 </div>
-                <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
-                  Enroll Now
-                </div>
+                <Link to={`/dashboard/payment`}>
+                  <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
+                    Enroll Now
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
