@@ -11,7 +11,7 @@ const AllClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedClasses, setSelectedClasses] = useState([]); 
+  const [selectedClasses, setSelectedClasses] = useState([]);
 
   const {
     data: classes,
@@ -51,6 +51,7 @@ const AllClasses = () => {
         totalEnrolledStudents,
         instructorEmail,
         instructorName,
+        selectedEmail: user.email,
       };
 
       // Check if the class is already added
@@ -76,7 +77,7 @@ const AllClasses = () => {
         .then((response) => {
           console.log(response.data);
           if (response.data.insertedId) {
-            setSelectedClasses([...selectedClasses, classItem]); 
+            setSelectedClasses([...selectedClasses, classItem]);
             refetch();
             Swal.fire({
               icon: 'success',
