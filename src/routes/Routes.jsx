@@ -97,13 +97,13 @@ const router = createBrowserRouter([
       // student routes---------
       {
         path: 'dashboard/selectedClass',
-        element: (
-            <SelectedClasses></SelectedClasses>
-        ),
+        element: <SelectedClasses></SelectedClasses>,
       },
       {
-        path: 'dashboard/payment',
+        path: 'dashboard/payment/:_id',
         element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/selectedClass/${params._id}`),
       },
     ],
   },

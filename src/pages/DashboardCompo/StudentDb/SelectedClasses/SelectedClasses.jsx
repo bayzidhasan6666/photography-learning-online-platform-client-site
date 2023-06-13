@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
+import Payment from '../../Payment/Payment';
 
 const SelectedClasses = () => {
   const { user } = useAuth();
   const [selectedClasses, setSelectedClasses] = useState([]);
+
   const [axiosSecure] = useAxiosSecure();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (user && user.email) {
@@ -50,10 +51,6 @@ const SelectedClasses = () => {
     });
   };
 
-  const handlePrice = (cls) => {
-    navigate('/dashboard/payment');
-  };
-
   return (
     <div>
       <h1 className="text-2xl font-bold text-center my-5">
@@ -71,9 +68,8 @@ const SelectedClasses = () => {
               <figure className="flex justify-center">
                 <img
                   src={
-                    cls.classImage
-                      ? cls.classImage
-                      : 'https://i.pinimg.com/736x/67/8e/73/678e73a79d5fd7575e945ff75ee975eb.jpg'
+                    cls.classImage ||
+                    'https://i.pinimg.com/736x/67/8e/73/678e73a79d5fd7575e945ff75ee975eb.jpg'
                   }
                   alt={cls.className}
                   className="md:w-64  md:h-58 object-cover rounded-tr-3xl"
@@ -95,11 +91,9 @@ const SelectedClasses = () => {
                   >
                     Remove
                   </button>
-                  <Link>
-                    <button
-                      onClick={() => handlePrice(cls)}
-                      className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-md ml-2"
-                    >
+                  <Link to={`/dashboard/payment/${cls._id}`}>
+                    {' '}
+                    <button className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-md ml-2">
                       Pay
                     </button>
                   </Link>
