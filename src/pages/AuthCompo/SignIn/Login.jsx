@@ -126,7 +126,7 @@ const Login = () => {
                   className={` ${
                     disabled
                       ? 'bg-gradient-to-r from-purple-200 via-pink-200 to-red-200'
-                      : 'bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 cursor-pointer'
+                      : 'bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] cursor-pointer'
                   } rounded font-semibold text-white py-2`}
                   type="submit"
                   value="Login"

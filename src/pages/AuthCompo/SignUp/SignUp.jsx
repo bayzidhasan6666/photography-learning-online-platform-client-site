@@ -315,7 +315,7 @@ const SignUp = () => {
               </div>
               <div className="form-control mt-6">
                 <input
-                  className={` bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 cursor-pointer
+                  className={` bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] cursor-pointer
                  rounded font-semibold text-white py-2`}
                   type="submit"
                   value="Sign Up"

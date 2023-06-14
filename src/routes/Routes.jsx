@@ -18,6 +18,8 @@ import AllClasses from '../pages/AllClasses/AllClasses';
 import AdminRoute from './AdminRoute';
 import InstructorRoute from './InstructorRoute';
 import StudentRoute from './StudentRoute';
+import EnrolledClass from '../pages/DashboardCompo/StudentDb/EnrolledClass/EnrolledClass';
+import PaymentHistory from '../pages/DashboardCompo/Payment/PaymentHistory';
 
 const router = createBrowserRouter([
   {
@@ -104,6 +106,14 @@ const router = createBrowserRouter([
         element: <Payment></Payment>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/selectedClass/${params._id}`),
+      },
+      {
+        path: 'dashboard/enrolledClass',
+        element: <EnrolledClass></EnrolledClass>,
+      },
+      {
+        path: 'dashboard/paymentHistory',
+        element: <PaymentHistory></PaymentHistory>,
       },
     ],
   },

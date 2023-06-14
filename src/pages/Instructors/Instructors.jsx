@@ -48,7 +48,7 @@ const Instructors = () => {
               </h2>
               <p className="text-gray-600">{instructor.email}</p>
               <div className="card-actions justify-end">
-                <button className="px-3 py-2 text-white font-semibold rounded-lg bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 ">
+                <button className="px-3 py-2 text-white font-semibold rounded-lg bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] ">
                   View Profile
                 </button>
               </div>

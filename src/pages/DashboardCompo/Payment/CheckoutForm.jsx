@@ -85,7 +85,7 @@ const CheckoutForm = ({ price, cls }) => {
         transactionId: paymentIntent.id,
         classDetails: cls,
         date: new Date(),
-        enrollStatus: 'pending'
+        enrollStatus: 'pending',
       };
       axiosSecure.post('/payments', payment).then((res) => {
         console.log(res.data);
@@ -122,7 +122,7 @@ const CheckoutForm = ({ price, cls }) => {
       <button
         type="submit"
         disabled={!stripe || !clientSecret || processing}
-        className="w-full bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-white font-semibold py-2 px-4 rounded shadow transition duration-300"
+        className="w-full bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] text-white font-semibold py-2 px-4 rounded shadow transition duration-300"
       >
         Pay
       </button>

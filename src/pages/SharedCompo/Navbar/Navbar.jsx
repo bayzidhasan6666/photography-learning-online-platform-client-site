@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 sticky top-0 z-10">
+    <div className="navbar bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] sticky top-0 z-10 rounded-b-xl">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -34,7 +34,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm font-semibold dropdown-content mt-3 p-2 text-white shadow bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box w-52 gap-2"
+            className="menu menu-sm font-semibold dropdown-content mt-3 p-2 text-white shadow bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] rounded-box w-52 gap-2"
           >
             <li>
               <ActiveLink to={'/'}>Home</ActiveLink>
@@ -100,7 +100,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 rounded-box text-white"
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow  bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] rounded-box text-white"
               >
                 <li>
                   <ActiveLink to={'/profile'}>Profile</ActiveLink>

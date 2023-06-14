@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 import useTitle from '../../../hooks/useTitle';
 import ActiveLink from '../../../ActiveLink/ActiveLink';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import useAuth from '../../../hooks/useAuth';
 
 const Dashboard = () => {
@@ -92,6 +92,12 @@ const Dashboard = () => {
             {role === 'instructor' && (
               <>
                 <li>
+                  <ActiveLink to={'/'}>
+                    <FaHome className="mr-2" />
+                    Home
+                  </ActiveLink>
+                </li>
+                <li>
                   <ActiveLink to={`/dashboard/addClasses`}>
                     <FaPlus className="mr-2" />
                     Add a Class
@@ -110,7 +116,7 @@ const Dashboard = () => {
             {role !== 'admin' && role !== 'instructor' && (
               <>
                 <li>
-                  <ActiveLink to={'/dashboard/studentHome'}>
+                  <ActiveLink to={'/'}>
                     <FaHome className="mr-2" />
                     Home
                   </ActiveLink>
@@ -125,6 +131,12 @@ const Dashboard = () => {
                   <ActiveLink to={`/dashboard/enrolledClass`}>
                     <FaFileInvoiceDollar className="mr-2" />
                     My Enrolled Class
+                  </ActiveLink>
+                </li>
+                <li>
+                  <ActiveLink to={`/dashboard/paymentHistory`}>
+                    <FaFileInvoiceDollar className="mr-2" />
+                    Payment History
                   </ActiveLink>
                 </li>
               </>
