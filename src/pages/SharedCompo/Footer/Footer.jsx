@@ -1,4 +1,5 @@
 import React from 'react';
+import ActiveLink from '../../../ActiveLink/ActiveLink';
 
 const Footer = () => {
   return (
@@ -18,12 +19,12 @@ const Footer = () => {
         <p>Copyright © 2023 - All right reserved</p>
       </div>
       <div>
-        <ul className='flex gap-5'>
+        <ul className="flex gap-5">
           <li>
-            <a href="#">About</a>
+            <ActiveLink to={'/about'}>About</ActiveLink>
           </li>
           <li>
-            <a href="#">Blogs</a>
+            <ActiveLink to={'/blog'}>Blogs</ActiveLink>
           </li>
           <li>
             <a href="#">Contact</a>
