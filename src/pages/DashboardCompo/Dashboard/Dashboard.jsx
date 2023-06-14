@@ -54,7 +54,7 @@ const Dashboard = () => {
       <div className="drawer-content flex flex-col ">
         <label
           htmlFor="my-drawer-2"
-          className="border px-3 py-2 bg-gradient-to-r from-purple-400 via-pink-500 to-pink-500 w-fit mt-32 lg:hidden"
+          className="border px-3 py-2 bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] rounded-xl h-full w-fit  mt-20 lg:hidden"
         >
           <FaArrowRight className="text-white" />
         </label>
@@ -63,7 +63,7 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
         <div className="menu-container">
-          <ul className="menu md:mt-20 lg:mt-0 p-4 w-80 h-full bg-gradient-to-r from-purple-400 via-pink-500 to-pink-500 text-white gap-2">
+          <ul className="menu md:mt-20 lg:mt-0 p-4 w-80 bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] rounded-xl mt-20  text-white gap-2">
             {/* Admin Dashboard */}
             {role === 'admin' && (
               <>

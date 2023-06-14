@@ -175,7 +175,7 @@ const ManageUsers = () => {
                   ) : (
                     <div className="flex space-x-2">
                       <button
-                        className="bg-pink-400 hover:bg-pink-500 text-white font-semibold py-2 px-4 rounded"
+                        className="bg-[#cc40f5] hover:bg-[#cc40f5] text-white font-semibold py-2 px-4 rounded"
                         onClick={() => handleMakeInstructor(user._id)}
                       >
                         Make Instructor
@@ -191,7 +191,7 @@ const ManageUsers = () => {
                 </td>
                 <td className="px-4 py-2 border">
                   <button
-                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded"
+                    className="bg-[#cc40f5] hover:bg-[#c022f0] text-white font-semibold py-2 px-4 rounded"
                     onClick={() => handleDeleteUser(user._id)}
                   >
                     Delete

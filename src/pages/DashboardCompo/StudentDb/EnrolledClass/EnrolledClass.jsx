@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import useAuth from '../../../../hooks/useAuth';
+import Typewriter from 'typewriter-effect';
 
 const EnrolledClass = () => {
   const [enrolledClasses, setEnrolledClasses] = useState([]);
@@ -31,12 +32,18 @@ const EnrolledClass = () => {
   }
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-2xl font-bold text-center my-8 mb-4">
-        My Enrolled Classes
-      </h1>
+    <div className="container mx-auto px-5">
+      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-10">
+        <Typewriter
+          options={{
+            strings: ['My Enrolled Class'],
+            autoStart: true,
+            loop: true,
+          }}
+        />
+      </h2>
       {user.displayName ? (
-        <h1 className="bg-gradient-to-b from-purple-500 to-red-500 bg-clip-text text-transparent font-bold  text-2xl my-5">
+        <h1 className="bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent font-bold   text-2xl my-5">
           Welcome Back {user.displayName}, Ready For Your Next Lesson?
         </h1>
       ) : (
@@ -57,7 +64,7 @@ const EnrolledClass = () => {
                   src={enrolledClass.classDetails.classImage}
                   alt=""
                 />
-                <h2 className="text-xl font-bold my-3">
+                <h2 className="text-xl bg-gradient-to-r from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent font-bold my-3">
                   {enrolledClass.className}
                 </h2>
                 <h2 className="text-lg text-purple-600  font-semibold mb-3">

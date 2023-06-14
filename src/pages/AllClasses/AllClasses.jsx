@@ -135,20 +135,16 @@ const AllClasses = () => {
               <p className="font-semibold">Enrolled Students : 0</p>
 
               <div className="card-actions justify-between">
-                <div className="badge text-red-500 font-semibold badge-outline">
+                <div className="badge text-[#cc40f5] font-semibold badge-outline">
                   $ {cls.price}
                 </div>
                 <div
                   onClick={() => handleSelectClass(cls)}
-                  className="badge text-teal-400 cursor-pointer font-semibold badge-outline"
+                  className="badge text-[#5b55fd] cursor-pointer font-semibold badge-outline"
                 >
                   Select Class
                 </div>
-                <Link to={`/dashboard/payment`}>
-                  <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
-                    Enroll Now
-                  </div>
-                </Link>
+              
               </div>
             </div>
           </div>

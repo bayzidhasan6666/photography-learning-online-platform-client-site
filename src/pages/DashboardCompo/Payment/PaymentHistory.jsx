@@ -27,23 +27,31 @@ const PaymentHistory = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-2xl font-bold text-center my-8 mb-4">
-        Payment History
-      </h1>
-      <table className="min-w-full bg-white border">
+      <h1 className="text-3xl font-bold text-center my-8">Payment History</h1>
+      <table className=" w-full  mx-auto bg-white border shadow-md">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b font-bold">Payment Email</th>
-            <th className="py-2 px-4 border-b font-bold">Amount</th>
-            <th className="py-2 px-4 border-b font-bold">Date</th>
+            <th className="py-4 px-6 bg-gray-100 font-semibold uppercase">
+              Payment Email
+            </th>
+            <th className="py-4 px-6 bg-gray-100 font-semibold uppercase">
+              Amount
+            </th>
+            <th className="py-4 px-6 bg-gray-100 font-semibold uppercase">
+              transaction Id
+            </th>
+            <th className="py-4 px-6 bg-gray-100 font-semibold uppercase">
+              Date
+            </th>
           </tr>
         </thead>
         <tbody>
           {payments.map((payment) => (
             <tr key={payment._id} className="border-b">
-              <td className="py-2 px-4">{payment.paymentEmail}</td>
-              <td className="py-2 px-4">{payment.price}</td>
-              <td className="py-2 px-4">{payment.date}</td>
+              <td className="py-4 px-6">{payment.paymentEmail}</td>
+              <td className="py-4 px-6">${payment.price}</td>
+              <td className="py-4 px-6">{payment.transactionId}</td>
+              <td className="py-4 px-6">{payment.date}</td>
             </tr>
           ))}
         </tbody>

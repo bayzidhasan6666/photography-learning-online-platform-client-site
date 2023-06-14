@@ -118,7 +118,7 @@ const ManageClasses = () => {
                         Approve
                       </button>
                       <button
-                        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                        className="bg-[#cc40f5] hover:bg-[#c022f0] text-white font-bold py-2 px-4 rounded"
                         onClick={() => denyClass(classItem)}
                       >
                         Deny
@@ -129,7 +129,7 @@ const ManageClasses = () => {
                     <span className="text-green-500 font-bold">Approved</span>
                   )}
                   {classItem.status === 'denied' && (
-                    <span className="text-red-500 font-bold">Denied</span>
+                    <span className="text-[#cc40f5] font-bold">Denied</span>
                   )}
                 </td>
               </tr>

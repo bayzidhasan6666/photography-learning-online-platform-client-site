@@ -44,7 +44,7 @@ const SocialLogin = () => {
         <button className="text-white bg-blue-500 hover:bg-blue-600 p-2 rounded-full">
           <FaFacebook size={20} />
         </button>
-        <button className="text-white bg-red-500 hover:bg-red-600 p-2 rounded-full">
+        <button className="text-white bg-[#cc40f5] hover:bg-[#c022f0] p-2 rounded-full">
           <FaGoogle onClick={handleGoogleSignIn} size={20} />
         </button>
         <button className="text-white bg-gray-500 hover:bg-gray-600 p-2 rounded-full">

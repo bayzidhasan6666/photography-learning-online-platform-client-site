@@ -107,7 +107,7 @@ const Cameras = () => {
 
   return (
     <div>
-      <h2 className="text-2xl  bg-gradient-to-b from-purple-500 to-red-500 bg-clip-text text-transparent uppercase font-bold text-center my-20">
+      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-20">
         <Typewriter
           options={{
             strings: ['Cameras & Equipments'],

@@ -24,7 +24,7 @@ const Home = () => {
           <label className="cursor-pointer label">
             <input
               type="checkbox"
-              className="toggle bg-pink-400"
+              className="toggle bg-[#cc40f5]"
               checked={isDarkMode}
               onChange={toggleDarkMode}
             />

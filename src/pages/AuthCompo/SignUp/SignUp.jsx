@@ -33,7 +33,7 @@ const SignUp = () => {
         timer: 2000,
         customClass: {
           container: 'max-w-sm mx-auto mt-10 bg-white rounded-lg shadow-lg p-4',
-          title: 'text-xl text-red-500 font-semibold',
+          title: 'text-xl text-[#cc40f5] font-semibold',
         },
       });
       return;
@@ -90,7 +90,7 @@ const SignUp = () => {
             customClass: {
               container:
                 'max-w-sm mx-auto mt-10 bg-white rounded-lg shadow-lg p-4',
-              title: 'text-xl text-red-500 font-semibold',
+              title: 'text-xl text-[#cc40f5] font-semibold',
             },
           });
         }
@@ -125,7 +125,7 @@ const SignUp = () => {
                   {...register('name', { required: true })}
                 />
                 {errors.name && (
-                  <span className="text-red-600 shadow-xl italic">
+                  <span className="text-[#c022f0] shadow-xl italic">
                     Name is required!
                   </span>
                 )}
@@ -139,7 +139,7 @@ const SignUp = () => {
                   {...register('photoUrl', { required: true })}
                 />
                 {errors.photoUrl && (
-                  <span className="text-red-600 shadow-xl italic">
+                  <span className="text-[#c022f0] shadow-xl italic">
                     Photo Url is required!
                   </span>
                 )}
@@ -153,7 +153,7 @@ const SignUp = () => {
                   {...register('email', { required: true })}
                 />
                 {errors.email && (
-                  <span className="text-red-600 shadow-xl italic">
+                  <span className="text-[#c022f0] shadow-xl italic">
                     Email is required!
                   </span>
                 )}
@@ -183,7 +183,7 @@ const SignUp = () => {
                   </span>
                 </div>
                 {errors.password && errors.password.type === 'required' && (
-                  <span className="text-red-600 shadow-xl italic">
+                  <span className="text-[#c022f0] shadow-xl italic">
                     Password is required.
                   </span>
                 )}
@@ -308,7 +308,7 @@ const SignUp = () => {
                   </span>
                 </div>
                 {errors.confirmPassword && (
-                  <span className="text-red-600 shadow-xl italic">
+                  <span className="text-[#c022f0] shadow-xl italic">
                     {errors.confirmPassword.message}
                   </span>
                 )}

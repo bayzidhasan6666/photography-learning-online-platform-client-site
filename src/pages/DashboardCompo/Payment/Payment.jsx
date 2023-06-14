@@ -23,7 +23,7 @@ const Payment = () => {
 
   return (
     <div className="container mx-auto">
-      <h2 className="text-2xl  bg-gradient-to-b from-purple-500 to-red-500 bg-clip-text text-transparent uppercase font-bold text-center my-10">
+      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-10">
         <Typewriter
           options={{
             strings: ['Payment Now', 'Enroll Now'],
@@ -33,7 +33,7 @@ const Payment = () => {
         />
       </h2>
       <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h1 className="text-3xl font-bold mb-4 bg-gradient-to-b from-purple-500 to-red-500 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold mb-4 bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent">
           {cls.className}
         </h1>
         <p className="text-gray-700 font-semibold mb-2">
@@ -41,7 +41,7 @@ const Payment = () => {
           <span className="text-purple-600">{cls.instructorName}</span>
         </p>
         <p className="text-gray-700 font-semibold">
-          Price: <span className="text-pink-500">$ {cls.price}</span>
+          Price: <span className="text-[#cc40f5]">$ {cls.price}</span>
         </p>
       </div>
       <Elements stripe={stripePromise}>

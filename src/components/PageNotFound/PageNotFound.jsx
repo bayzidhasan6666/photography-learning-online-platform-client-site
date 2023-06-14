@@ -18,7 +18,7 @@ const PageNotFound = () => {
         <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
           <div className="max-w-md text-center">
             <Lottie animationData={errorAnime} loop={true} />
-            <p className="text-red-500 font-semibold animate-pulse mb-2 text-3xl italic font-serif">
+            <p className="text-[#cc40f5] font-semibold animate-pulse mb-2 text-3xl italic font-serif">
               Oops!!
             </p>
             <p className="text-2xl italic font-semibold md:text-3xl text-gray-300 mb-5">
@@ -26,7 +26,7 @@ const PageNotFound = () => {
             </p>
             <button
               onClick={goBack}
-              className="border border-cyan-400 px-3 py-1 font-semibold hover:border-red-500 hover:text-orange-400 text-emerald-400"
+              className="border border-cyan-400 px-3 py-1 font-semibold hover:border-[#cc40f5] hover:text-orange-400 text-emerald-400"
             >
               Go Back
             </button>

@@ -89,7 +89,7 @@ const MyClasses = () => {
                 </td>
                 <td className="py-4 px-6 border-b">
                   <button
-                    className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded"
+                    className="bg-[#cc40f5] hover:bg-[#cc40f5] text-white font-bold py-2 px-4 rounded"
                     onClick={() => updateClassStatus(classItem._id, 'approved')}
                   >
                     Update

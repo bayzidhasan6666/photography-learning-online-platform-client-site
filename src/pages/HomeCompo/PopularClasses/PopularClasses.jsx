@@ -112,7 +112,9 @@ const PopularClasses = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center my-5">Our Popular Classes</h2>
+      <h2 className="text-2xl font-bold text-center my-5">
+        Our Popular Classes
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
         {classes.map((cls) => (
           <div
@@ -135,17 +137,17 @@ const PopularClasses = () => {
               <p className="font-semibold">Enrolled Students : 0</p>
 
               <div className="card-actions justify-between">
-                <div className="badge text-red-500 font-semibold badge-outline">
+                <div className="badge text-[#cc40f5] font-semibold badge-outline">
                   $ {cls.price}
                 </div>
                 <div
                   onClick={() => handleSelectClass(cls)}
-                  className="badge text-teal-400 cursor-pointer font-semibold badge-outline"
+                  className="badge text-[#5b55fd] cursor-pointer font-semibold badge-outline"
                 >
                   Select Class
                 </div>
                 <Link to={`/dashboard/payment`}>
-                  <div className="badge text-pink-400 cursor-pointer font-semibold badge-outline">
+                  <div className="badge text-[#cc40f5] cursor-pointer font-semibold badge-outline">
                     Enroll Now
                   </div>
                 </Link>

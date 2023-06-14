@@ -86,14 +86,14 @@ const SelectedClasses = () => {
                 </p>
                 <div className="flex items-center py-2">
                   <button
-                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md"
+                    className="bg-[#cc40f5] hover:bg-[#c022f0] text-white font-semibold py-2 px-4 rounded-md"
                     onClick={() => handleDeleteClass(cls._id)}
                   >
                     Remove
                   </button>
                   <Link to={`/dashboard/payment/${cls._id}`}>
                     {' '}
-                    <button className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-md ml-2">
+                    <button className="bg-[#5b55fd] hover:bg-[#4b45fb] text-white font-semibold py-2 px-4 rounded-md ml-2">
                       Pay
                     </button>
                   </Link>

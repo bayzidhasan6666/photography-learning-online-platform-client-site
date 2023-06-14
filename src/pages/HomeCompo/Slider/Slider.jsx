@@ -49,9 +49,9 @@ const Slider = () => {
     >
       {slides.map((slide, index) => (
         <div key={index} className=" ">
-          <div className="w-full ">
+          <div className="w-full rounded-xl">
             <img
-              className=" w-96 h-96 md:h-[600px] lg:h-screen"
+              className=" w-96 h-96 md:h-[600px] rounded-xl lg:h-screen"
               src={slide.image}
               alt=""
             />
