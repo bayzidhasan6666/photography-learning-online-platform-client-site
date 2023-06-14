@@ -27,7 +27,7 @@ const Footer = () => {
             <ActiveLink to={'/blog'}>Blogs</ActiveLink>
           </li>
           <li>
-            <a href="#">Contact</a>
+            <ActiveLink to={'/contact'}>Contact</ActiveLink>
           </li>
         </ul>
       </div>

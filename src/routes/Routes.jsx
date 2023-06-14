@@ -22,6 +22,7 @@ import EnrolledClass from '../pages/DashboardCompo/StudentDb/EnrolledClass/Enrol
 import PaymentHistory from '../pages/DashboardCompo/Payment/PaymentHistory';
 import About from '../pages/About/About';
 import Blog from '../pages/Blog/Blog';
+import Contact from '../pages/Contact/Contact';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: <Blog></Blog>,
+      },
+      {
+        path: 'contact',
+        element: <Contact></Contact>,
       },
       {
         path: '/dashboard',
