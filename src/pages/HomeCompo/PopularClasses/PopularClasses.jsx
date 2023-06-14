@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useAuth from '../../../hooks/useAuth';
+import Typewriter from 'typewriter-effect';
 
 const PopularClasses = () => {
   const { user } = useAuth();
@@ -112,11 +113,17 @@ const PopularClasses = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center my-5">
-        Our Popular Classes
+      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-20">
+        <Typewriter
+          options={{
+            strings: ['Our Popular Classes'],
+            autoStart: true,
+            loop: true,
+          }}
+        />
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
-        {classes.map((cls) => (
+        {classes.slice(0, 6).map((cls) => (
           <div
             key={cls._id}
             className="card h-96 w-96 mx-auto bg-base-100 shadow-xl"
@@ -134,8 +141,11 @@ const PopularClasses = () => {
             <div className="card-body">
               <h2 className="card-title">{cls.className}</h2>
               <p className="font-semibold">Instructor : {cls.instructorName}</p>
-              <p className="font-semibold">Enrolled Students : 0</p>
-
+              <div className='flex gap-5'>
+                {' '}
+                <p className="font-semibold">Enrolled Students : 0</p>
+                <p className="font-semibold">Available Seats : {cls.availableSeats}</p>
+              </div>
               <div className="card-actions justify-between">
                 <div className="badge text-[#cc40f5] font-semibold badge-outline">
                   $ {cls.price}
@@ -146,11 +156,6 @@ const PopularClasses = () => {
                 >
                   Select Class
                 </div>
-                <Link to={`/dashboard/payment`}>
-                  <div className="badge text-[#cc40f5] cursor-pointer font-semibold badge-outline">
-                    Enroll Now
-                  </div>
-                </Link>
               </div>
             </div>
           </div>

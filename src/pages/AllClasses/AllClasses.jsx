@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Typewriter from 'typewriter-effect';
+
 
 const AllClasses = () => {
   const { user } = useAuth();
@@ -32,6 +34,7 @@ const AllClasses = () => {
   }
 
   const handleSelectClass = (item) => {
+    console.log(item);
     if (user && user.email) {
       const {
         _id,
@@ -112,7 +115,15 @@ const AllClasses = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center my-5">All Classes</h2>
+      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-10">
+        <Typewriter
+          options={{
+            strings: ['Available Classes'],
+            autoStart: true,
+            loop: true,
+          }}
+        />
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4">
         {classes.map((cls) => (
           <div
@@ -132,7 +143,12 @@ const AllClasses = () => {
             <div className="card-body">
               <h2 className="card-title">{cls.className}</h2>
               <p className="font-semibold">Instructor : {cls.instructorName}</p>
-              <p className="font-semibold">Enrolled Students : 0</p>
+              <div className="flex gap-5">
+                <p className="font-semibold">Enrolled Students : 0</p>
+                <p className="font-semibold">
+                  Available Seats : {cls.availableSeats}
+                </p>
+              </div>
 
               <div className="card-actions justify-between">
                 <div className="badge text-[#cc40f5] font-semibold badge-outline">
@@ -144,7 +160,6 @@ const AllClasses = () => {
                 >
                   Select Class
                 </div>
-              
               </div>
             </div>
           </div>

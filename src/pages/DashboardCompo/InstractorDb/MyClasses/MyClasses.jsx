@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import useAuth from '../../../../hooks/useAuth';
 
 const MyClasses = () => {
   const [classes, setClasses] = useState([]);
+  const { user } = useAuth();
 
   useEffect(() => {
     // Fetch classes data from the server for the current instructor
@@ -17,6 +19,10 @@ const MyClasses = () => {
 
     fetchClasses();
   }, []);
+
+  const filteredClasses = classes.filter(
+    (classItem) => classItem.instructorEmail === user.email
+  );
 
   const updateClassStatus = (classId, newStatus) => {
     setClasses((prevClasses) =>
@@ -34,7 +40,7 @@ const MyClasses = () => {
       <h2 className="text-xl text-center uppercase font-bold mb-6">
         My Classes
       </h2>
-      {classes.length === 0 ? (
+      {filteredClasses.length === 0 ? (
         <p>No classes found.</p>
       ) : (
         <table className="w-full border-collapse">
@@ -64,7 +70,7 @@ const MyClasses = () => {
             </tr>
           </thead>
           <tbody>
-            {classes.map((classItem, index) => (
+            {filteredClasses.map((classItem, index) => (
               <tr
                 key={classItem._id}
                 className={`hover:bg-gray-100 ${
@@ -89,7 +95,7 @@ const MyClasses = () => {
                 </td>
                 <td className="py-4 px-6 border-b">
                   <button
-                    className="bg-[#cc40f5] hover:bg-[#cc40f5] text-white font-bold py-2 px-4 rounded"
+                    className="bg-[#6553fc] hover:bg-[#5745f9] text-white font-bold py-2 px-4 rounded"
                     onClick={() => updateClassStatus(classItem._id, 'approved')}
                   >
                     Update
