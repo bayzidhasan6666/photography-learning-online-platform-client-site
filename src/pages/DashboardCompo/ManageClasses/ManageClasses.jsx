@@ -12,7 +12,9 @@ const ManageClasses = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await fetch('http://localhost:5000/classes');
+      const response = await fetch(
+        'https://photography-school-server-site.vercel.app/classes'
+      );
       const data = await response.json();
       setClasses(data);
     } catch (error) {
@@ -27,11 +29,14 @@ const ManageClasses = () => {
 
   const approveClass = async (classItem) => {
     try {
-      await fetch(`http://localhost:5000/classes/${classItem._id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: 'approved' }),
-      });
+      await fetch(
+        `https://photography-school-server-site.vercel.app/classes/${classItem._id}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'approved' }),
+        }
+      );
       fetchClasses();
     } catch (error) {
       console.error('Error:', error);
@@ -40,11 +45,14 @@ const ManageClasses = () => {
 
   const sendFeedback = async () => {
     try {
-      await fetch(`http://localhost:5000/classes/${selectedClass._id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ feedback }),
-      });
+      await fetch(
+        `https://photography-school-server-site.vercel.app/classes/${selectedClass._id}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ feedback }),
+        }
+      );
       setFeedbackModalOpen(false);
       setFeedback('');
       fetchClasses();

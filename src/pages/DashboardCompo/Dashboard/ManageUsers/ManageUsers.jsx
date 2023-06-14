@@ -7,7 +7,7 @@ const ManageUsers = () => {
   useTitle('Manage Users');
 
   useEffect(() => {
-    fetch('http://localhost:5000/users')
+    fetch('https://photography-school-server-site.vercel.app/users')
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -18,7 +18,7 @@ const ManageUsers = () => {
   }, []);
 
   const handleDeleteUser = (id) => {
-    fetch(`http://localhost:5000/users/${id}`, {
+    fetch(`https://photography-school-server-site.vercel.app/users/${id}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())
@@ -52,9 +52,12 @@ const ManageUsers = () => {
   };
 
   const handleMakeInstructor = (id) => {
-    fetch(`http://localhost:5000/users/instructor/${id}`, {
-      method: 'PATCH',
-    })
+    fetch(
+      `https://photography-school-server-site.vercel.app/users/instructor/${id}`,
+      {
+        method: 'PATCH',
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -93,9 +96,12 @@ const ManageUsers = () => {
   };
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: 'PATCH',
-    })
+    fetch(
+      `https://photography-school-server-site.vercel.app/users/admin/${id}`,
+      {
+        method: 'PATCH',
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

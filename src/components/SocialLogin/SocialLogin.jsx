@@ -19,7 +19,7 @@ const SocialLogin = () => {
         email: loggedInUser.email,
         photoUrl: loggedInUser.photoURL,
       };
-      fetch('http://localhost:5000/users', {
+      fetch('https://photography-school-server-site.vercel.app/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -74,7 +74,10 @@ const PopularClasses = () => {
       }
 
       axios
-        .post('http://localhost:5000/selectedClass', classItem)
+        .post(
+          'https://photography-school-server-site.vercel.app/selectedClass',
+          classItem
+        )
         .then((response) => {
           console.log(response.data);
           if (response.data.insertedId) {
@@ -141,10 +144,12 @@ const PopularClasses = () => {
             <div className="card-body">
               <h2 className="card-title">{cls.className}</h2>
               <p className="font-semibold">Instructor : {cls.instructorName}</p>
-              <div className='flex gap-5'>
+              <div className="flex gap-5">
                 {' '}
                 <p className="font-semibold">Enrolled Students : 0</p>
-                <p className="font-semibold">Available Seats : {cls.availableSeats}</p>
+                <p className="font-semibold">
+                  Available Seats : {cls.availableSeats}
+                </p>
               </div>
               <div className="card-actions justify-between">
                 <div className="badge text-[#cc40f5] font-semibold badge-outline">

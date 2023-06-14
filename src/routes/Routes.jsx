@@ -105,7 +105,9 @@ const router = createBrowserRouter([
         path: 'dashboard/payment/:_id',
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/selectedClass/${params._id}`),
+          fetch(
+            `https://photography-school-server-site.vercel.app/selectedClass/${params._id}`
+          ),
       },
       {
         path: 'dashboard/enrolledClass',

@@ -7,7 +7,6 @@ import axios from 'axios';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import Typewriter from 'typewriter-effect';
 
-
 const AllClasses = () => {
   const { user } = useAuth();
   const [axiosSecure] = useAxiosSecure();
@@ -76,7 +75,10 @@ const AllClasses = () => {
       }
 
       axios
-        .post('http://localhost:5000/selectedClass', classItem)
+        .post(
+          'https://photography-school-server-site.vercel.app/selectedClass',
+          classItem
+        )
         .then((response) => {
           console.log(response.data);
           if (response.data.insertedId) {

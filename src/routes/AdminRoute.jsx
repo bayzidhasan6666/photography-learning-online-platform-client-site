@@ -4,14 +4,16 @@ import axios from 'axios';
 import useAuth from '../hooks/useAuth';
 
 const AdminRoute = ({ children }) => {
-  const { user }= useAuth();
+  const { user } = useAuth();
   const location = useLocation();
   const [isAdmin, setIsAdmin] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users');
+        const response = await axios.get(
+          'https://photography-school-server-site.vercel.app/users'
+        );
         const users = response.data;
         const isAdminUser = users.some((user) => user.role === 'admin');
         console.log('isAdminUser:', isAdminUser);

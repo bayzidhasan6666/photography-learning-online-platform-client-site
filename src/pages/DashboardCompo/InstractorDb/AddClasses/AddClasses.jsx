@@ -48,13 +48,16 @@ const AddClass = () => {
         console.log(newClass);
 
         try {
-          const response = await fetch('http://localhost:5000/classes', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newClass),
-          });
+          const response = await fetch(
+            'https://photography-school-server-site.vercel.app/classes',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newClass),
+            }
+          );
 
           if (response.ok) {
             reset();

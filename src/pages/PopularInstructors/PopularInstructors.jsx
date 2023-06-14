@@ -12,7 +12,7 @@ const PopularInstructors = () => {
 
   const fetchInstructors = async () => {
     try {
-      const url = 'http://localhost:5000/users';
+      const url = 'https://photography-school-server-site.vercel.app/users';
       const response = await axiosSecure.get(url);
       const filteredInstructors = response.data.filter(
         (instructor) => instructor.role === 'instructor'

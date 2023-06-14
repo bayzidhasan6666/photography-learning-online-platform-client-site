@@ -11,7 +11,9 @@ const InstructorRoute = ({ children }) => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/users');
+        const response = await axios.get(
+          'https://photography-school-server-site.vercel.app/users'
+        );
         const users = response.data;
         const isInstructorUser = users.some(
           (user) => user.role === 'instructor'
