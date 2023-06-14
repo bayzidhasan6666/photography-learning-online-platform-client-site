@@ -118,7 +118,7 @@ const Navbar = () => {
           <>
             <Link
               to={`/login`}
-              className="px-3 py-2 hover:text-gray-300 border border-white text-white rounded-none capitalize"
+              className="px-3 py-2 hover:text-[#ecafff] border border-white text-white rounded-lg capitalize"
             >
               Login
             </Link>
