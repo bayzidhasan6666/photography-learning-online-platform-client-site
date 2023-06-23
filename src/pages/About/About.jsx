@@ -4,13 +4,13 @@ const About = () => {
   return (
     <div className="min-h-screen text-black rounded-xl mt-5 px-10">
       <div className="container mx-auto py-12">
-        <div className="flex flex-col items-center justify-center">
+        <div className="md:flex md:flex-col items-center justify-center">
           <p className="bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent font-bold text-3xl my-5">
             The most beautiful moments in life come after going through
             hardships and challenges.
           </p>
-          <div className="grid grid-cols-2 gap-8 mt-12">
-            <div className="flex items-center space-x-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+            <div className="md:flex items-center space-x-4">
               <div className="rounded">
                 <img
                   src="https://www.photo-emphasis.com/wp-content/uploads/2023/02/60294816e5abae001c5260be.jpg"
@@ -30,7 +30,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="md:flex items-center space-x-4">
               <div className="rounded">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZYWM4GLTwXF6PQFfDtbIDGw_LdVQ2Lu3fA4-2GbjPjDBwsat1iZfzJayOr49Cujvxr6M&usqp=CAU"
@@ -50,7 +50,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="md:flex items-center space-x-4">
               <div className="rounded">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPbpMlG3ExPViaMYHy-Nb9G0vpe3su2r-gqIuRG-e8oRDVBOzmZSswZ9vCXbdZORYVu_o&usqp=CAU"
@@ -70,7 +70,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="md:flex items-center space-x-4">
               <div className="rounded">
                 <img
                   src="https://images.squarespace-cdn.com/content/v1/59309765be6594842fe6d565/1582061823959-KFAVG9RKPPKOSNLVYGDK/7B4A8530-Edit-2.jpg?format=1500w"
