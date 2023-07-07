@@ -19,13 +19,13 @@ const Home = () => {
   }, [isDarkMode]);
 
   return (
-    <div className={isDarkMode ? 'dark bg-[#1c1c1dfb]' : 'light'}>
+    <div className={`isDarkMode ? 'dark bg-[#1c1c1dfb]' : 'light' px-2`}>
       <div className="">
         <div className="form-control w-52">
           <label className="cursor-pointer label">
             <input
               type="checkbox"
-              className="toggle bg-[#cc40f5]"
+              className="toggle hidden bg-[#cc40f5]"
               checked={isDarkMode}
               onChange={toggleDarkMode}
             />

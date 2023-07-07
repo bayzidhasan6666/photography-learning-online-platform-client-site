@@ -117,7 +117,7 @@ const AllClasses = () => {
 
   return (
     <div>
-      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-10">
+      <h2 className="text-2xl  bg-gradient-to-b from-[#5b55fd] to-[#cc40f5] bg-clip-text text-transparent uppercase font-bold text-center my-10 ">
         <Typewriter
           options={{
             strings: ['Available Classes'],
@@ -130,7 +130,7 @@ const AllClasses = () => {
         {classes.map((cls) => (
           <div
             key={cls._id}
-            className="card h-96 w-96 mx-auto bg-base-100 shadow-xl"
+            className="card h-96 md:w-96 px-2 mx-auto bg-base-100 shadow-xl"
           >
             <figure>
               <img

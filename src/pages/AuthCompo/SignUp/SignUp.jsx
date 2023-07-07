@@ -108,9 +108,9 @@ const SignUp = () => {
 
   return (
     <>
-      <div className="hero background min-h-screen border shadow-xl my-10">
-        <div className="hero-content flex-col ">
-          <div className="card w-[500px]">
+      <div className="hero rounded-xl background min-h-screen border shadow-xl ">
+        <div className="md:hero-content">
+          <div className=" card flex-shrink-0 md:w-[500px] max-w-xl">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <div className="form-control">
                 <h1 className="text-2xl  text-white mb-5 text-center font-bold">
@@ -331,10 +331,10 @@ const SignUp = () => {
                   </span>
                 </Link>
               </p>
+              <div className="card md:w-[500px] my-3">
+                <SocialLogin />
+              </div>
             </div>
-          </div>
-          <div className="card w-[500px]">
-            <SocialLogin />
           </div>
         </div>
       </div>

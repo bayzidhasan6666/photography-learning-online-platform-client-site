@@ -80,7 +80,7 @@ const Login = () => {
     <>
       <div className="hero background min-h-screen border shadow-xl my-10">
         <div className="hero-content">
-          <div className="card flex-shrink-0 w-[500px] max-w-xl">
+          <div className="card flex-shrink-0 md:w-[500px] max-w-xl">
             <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
                 <h1 className="text-2xl mb-5 text-white text-center font-bold">

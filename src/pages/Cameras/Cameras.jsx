@@ -120,7 +120,7 @@ const Cameras = () => {
         {cameras.map((camera) => (
           <div
             key={camera.id}
-            className="card  h-96 mx-auto w-96"
+            className="card  h-96 mx-auto md:w-96"
             data-aos="fade-up"
             data-aos-delay="100"
           >

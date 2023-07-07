@@ -129,7 +129,7 @@ const PopularClasses = () => {
         {classes.slice(0, 6).map((cls) => (
           <div
             key={cls._id}
-            className="card h-96 w-96 mx-auto bg-base-100 shadow-xl"
+            className="card h-96 md:w-96 mx-auto bg-base-100 shadow-xl"
           >
             <figure>
               <img

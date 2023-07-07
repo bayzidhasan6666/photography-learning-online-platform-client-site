@@ -23,9 +23,9 @@ const Instructors = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-2">
       <h1 className="text-2xl text-center mb-10 font-bold ">Our Instructors</h1>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {instructors.map((instructor) => (
           <div
             key={instructor._id}
@@ -39,7 +39,7 @@ const Instructors = () => {
                     : 'https://i.pinimg.com/736x/67/8e/73/678e73a79d5fd7575e945ff75ee975eb.jpg'
                 }
                 alt={instructor.name}
-                className="object-cover w-60 h-48"
+                className="object-cover w-60  h-48"
               />
             </figure>
             <div className="card-body">

@@ -51,7 +51,7 @@ const Dashboard = () => {
   console.log(role);
 
   return (
-    <div className="drawer lg:drawer-open  dashboard-container">
+    <div className="drawer lg:drawer-open   dashboard-container">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col ">
         <label
@@ -65,7 +65,7 @@ const Dashboard = () => {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
         <div className="menu-container">
-          <ul className="menu md:mt-20 lg:mt-0 p-4 w-80 bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] rounded-xl mt-20  text-white gap-2">
+          <ul className="menu lg:mt-0 p-4 w-80 bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] rounded-xl md:mt-20  text-white gap-2 my-3">
             {/* Admin Dashboard */}
             {role === 'admin' && (
               <>

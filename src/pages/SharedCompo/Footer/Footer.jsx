@@ -3,7 +3,7 @@ import ActiveLink from '../../../ActiveLink/ActiveLink';
 
 const Footer = () => {
   return (
-    <footer className="footer items-center p-10 mt-5 bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] z-10 rounded-t-xl  text-white">
+    <footer className="footer items-center p-10  bg-gradient-to-r from-[#cc40f5]  to-[#5b55fd] z-10 rounded-t-xl  text-white">
       <div className="items-center grid-flow-col">
         <svg
           width="36"

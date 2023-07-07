@@ -142,7 +142,68 @@ const ManageUsers = () => {
   return (
     <div className="container mx-auto py-6">
       <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
-      <div className="overflow-x-auto">
+      <div className="lg:hidden">
+        {users.map((user, index) => (
+          <div
+            key={user._id}
+            className="bg-white shadow overflow-hidden sm:rounded-lg mb-4"
+          >
+            <div className="px-4 py-5 sm:px-6">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                User Details
+              </h3>
+            </div>
+            <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+              <dl className="sm:divide-y sm:divide-gray-200">
+                <div className="flex justify-between items-center px-4 py-2">
+                  <dt className="text-sm font-medium text-gray-500">Name</dt>
+                  <dd className="text-sm text-gray-900">{user.name}</dd>
+                </div>
+           
+                <div className="flex justify-between items-center px-4 py-2">
+                  <dt className="text-sm font-medium text-gray-500">Email</dt>
+                  <dd className="text-sm text-gray-900">{user.email}</dd>
+                </div>
+                <div className="flex justify-between items-center px-4 py-2">
+                  <dt className="text-sm font-medium text-gray-500">Role</dt>
+                  <dd className="text-sm text-gray-900">
+                    {user.role === 'admin' ? (
+                      'Admin'
+                    ) : user.role === 'instructor' ? (
+                      'Instructor'
+                    ) : (
+                      <div className="flex space-x-2">
+                        <button
+                          className="bg-[#f54091] hover:bg-[#cc40f5] text-white font-semibold py-2 px-4 rounded"
+                          onClick={() => handleMakeInstructor(user._id)}
+                        >
+                          Make Instructor
+                        </button>
+                        <button
+                          className="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
+                          onClick={() => handleMakeAdmin(user._id)}
+                        >
+                          Make Admin
+                        </button>
+                      </div>
+                    )}
+                  </dd>
+                </div>
+                <div className="px-4 py-2 flex justify-end">
+                  <button
+                    className="bg-[#f54040] hover:bg-[#f02222] text-white font-semibold py-2 px-4 rounded"
+                    onClick={() => handleDeleteUser(user._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </dl>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="overflow-x-auto hidden lg:block">
         <table className="table-auto w-full border-collapse border">
           <thead>
             <tr>
@@ -175,9 +236,9 @@ const ManageUsers = () => {
                 <td className="px-4 py-2 border">{user.email}</td>
                 <td className="px-4 py-2 border">
                   {user.role === 'admin' ? (
-                    'admin'
+                    'Admin'
                   ) : user.role === 'instructor' ? (
-                    'instructor'
+                    'Instructor'
                   ) : (
                     <div className="flex space-x-2">
                       <button

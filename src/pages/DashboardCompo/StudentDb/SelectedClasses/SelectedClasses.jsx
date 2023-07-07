@@ -3,7 +3,7 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
-import Payment from '../../Payment/Payment';
+
 
 const SelectedClasses = () => {
   const { user } = useAuth();
@@ -59,7 +59,7 @@ const SelectedClasses = () => {
       {selectedClasses.length === 0 ? (
         <p className="text-center text-gray-500">No classes selected.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
           {selectedClasses.map((cls) => (
             <div
               key={cls._id}
@@ -72,7 +72,7 @@ const SelectedClasses = () => {
                     'https://i.pinimg.com/736x/67/8e/73/678e73a79d5fd7575e945ff75ee975eb.jpg'
                   }
                   alt={cls.className}
-                  className="md:w-64  md:h-58 object-cover rounded-tr-3xl"
+                  className="md:w-64 h-64 w-full  md:h-64 lg:h-64 object-cover rounded-tr-3xl"
                 />
               </figure>
               <div className="p-4">
